@@ -1,0 +1,12 @@
+version: '2'
+services:
+  test:
+    image: ruby:2.4.2
+    environment:
+      BUNDLE_BIN: "/usr/src/app/vendor/.bundle/ruby/2.4.0/bin"
+      BUNDLE_PATH: "/usr/src/app/vendor/.bundle/ruby/2.4.0"
+      BUNDLE_APP_CONFIG: "/usr/src/app/.bundle"
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app/
+    command: "true"
