@@ -5,4 +5,5 @@ module ProcParser
 end
 
 require 'proc_parser/cpu_stat'
+require 'proc_parser/loadavg'
 require 'proc_parser/mem_info'
