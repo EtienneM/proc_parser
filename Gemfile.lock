@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    proc_parser (0.2.0)
+    proc_parser (0.2.1)
 
 GEM
   remote: https://rubygems.org/
