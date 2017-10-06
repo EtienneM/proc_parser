@@ -1,5 +1,7 @@
 require 'proc_parser/version'
 
 module ProcParser
-  # Your code goes here...
+  class NoProcData < Exception; end
 end
+
+require 'proc_parser/mem_info'
