@@ -1,6 +1,6 @@
 version: '2'
 services:
-  test:
+  proc-parser:
     image: ruby:2.4.2
     environment:
       BUNDLE_BIN: "/usr/src/app/vendor/.bundle/ruby/2.4.0/bin"
