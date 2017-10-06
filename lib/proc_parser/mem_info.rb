@@ -59,7 +59,7 @@ module ProcParser
         @@attributes.keys.each do |attribute|
           value, unit = regex_match(attribute, data)
           if unit != 'kB'
-            raise NoProcData, "Unsupported unit stored in meminfo."
+            raise NoProcData, 'Unsupported unit stored in meminfo.'
           end
           instance_variable_set("@#{attribute.to_s}", value.to_i)
         end
