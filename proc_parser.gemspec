@@ -9,8 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Étienne Michon']
   spec.email         = ['etienne@scalingo.com']
 
-  spec.summary       = %q{Ruby wrapper for /proc data}
-  spec.description   = %q{Ruby wrapper for /proc data}
+  spec.summary       = %q{ProcParser provides a Ruby wrapper for /proc data}
+  spec.description   = %q{ProcParser provides a Ruby wrapper for /proc data such as mem_info, stat
+                          and loadavg}
   spec.homepage      = "https://github.com/EtienneM/proc_parser"
   spec.license       = 'MIT'
 

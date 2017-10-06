@@ -1,4 +1,4 @@
-# ProcParser
+# proc_parser
 
 Welcome to your new gem! In this directory, you'll find the files you need to
 be able to package up your Ruby library into a gem. Put your Ruby code in the
@@ -6,6 +6,16 @@ file `lib/proc_parser`. To experiment with that code, run `bin/console` for an
 interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
+
+proc_parser provides a Ruby wrapper for /proc data such as those contained in
+/proc/mem_info, /proc/stat and /proc/loadavg.
+
+Interested in support of more proc files? Contributions are welcome! You can
+either create an [issue](https://github.com/EtienneM/mem_info/issues) or
+propose a [pull request](https://github.com/EtienneM/mem_info/pulls).
+
+Wondering the meaning of some fields? Read the manual with [`man 5
+proc`](https://linux.die.net/man/5/proc).
 
 ## Installation
 
@@ -25,7 +35,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+meminfo = ProcParser::MemInfo
+memtotal = meminfo.memtotal
+memfree = meminfo.memfree
+```
 
 ## Development
 
@@ -38,6 +52,12 @@ release a new version, update the version number in `version.rb`, and then run
 `bundle exec rake release`, which will create a git tag for the version, push
 git commits and tags, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
+
+## Acknowledgment
+
+This gem is a generalization of the wonderful work from
+[watsonian](https://github.com/watsonian/) and its
+[`mem_info`](https://github.com/watsonian/mem_info/) gem.
 
 ## Contributing
 
