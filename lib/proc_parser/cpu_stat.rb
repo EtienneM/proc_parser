@@ -1,8 +1,8 @@
 module ProcParser
   class CPUStat
     #
-    # This class read CPU usage information from the /proc/stat file. The behavior for Kernel version
-    # prior to 2.5.41 is undefined.
+    # This class read CPU usage information from the /proc/stat file. The behavior for Kernel
+    # version prior to 2.5.41 is undefined.
     #
 
     attr_accessor :user, :nice, :system, :idle, :iowait, :irq, :softirq, :steal, :guest, :guest_nice
@@ -21,16 +21,15 @@ module ProcParser
 
     attr_accessor :nb_cpu
 
-
-    def initialize(stat_file='/proc/stat')
-      raise NoProcData, "This system doesn't have /proc/stat data." if not File.exists?(stat_file)
+    def initialize(stat_file = '/proc/stat')
+      raise NoProcData, "This system doesn't have /proc/stat data." if !File.exist?(stat_file)
 
       File.open(stat_file, 'r') do |file|
         firstline = file.readline.strip.squeeze(' ').split(' ')
         raise NoProcData, 'Unsupported format of /proc/stat' if firstline[0] != 'cpu'
 
         @@attributes.each do |attribute, index|
-          instance_variable_set("@#{attribute.to_s}", firstline[index].to_i)
+          instance_variable_set("@#{attribute}", firstline[index].to_i)
         end
 
         @nb_cpu = 0
@@ -63,6 +62,7 @@ module ProcParser
       non_idlealltime = user + nice + systemalltime + @steal + virtalltime
 
       total = idlealltime + non_idlealltime
+
       return non_idlealltime / total.to_f / @nb_cpu
     end
   end

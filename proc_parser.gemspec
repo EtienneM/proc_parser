@@ -1,5 +1,6 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
+
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'proc_parser/version'
 
@@ -9,10 +10,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Étienne Michon']
   spec.email         = ['etienne@scalingo.com']
 
-  spec.summary       = %q{ProcParser provides a Ruby wrapper for /proc data}
-  spec.description   = %q{ProcParser provides a Ruby wrapper for /proc data such as mem_info, stat
-                          and loadavg}
-  spec.homepage      = "https://github.com/EtienneM/proc_parser"
+  spec.summary       = 'ProcParser provides a Ruby wrapper for /proc data'
+  spec.description   = 'ProcParser provides a Ruby wrapper for /proc data such as mem_info, stat
+                          and loadavg'
+  spec.homepage      = 'https://github.com/EtienneM/proc_parser'
   spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -24,7 +25,7 @@ Gem::Specification.new do |spec|
       'public gem pushes.'
   end
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+  spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
   spec.bindir        = 'exe'

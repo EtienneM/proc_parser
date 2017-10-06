@@ -1,7 +1,7 @@
 require 'proc_parser/version'
 
 module ProcParser
-  class NoProcData < Exception; end
+  class NoProcData < RuntimeError; end
 end
 
 require 'proc_parser/cpu_stat'

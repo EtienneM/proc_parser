@@ -15,53 +15,52 @@ module ProcParser
                   :vmallochunk, :directmap4k, :directmap2m
 
     @@attributes = {
-      :memtotal       => 'MemTotal',
-      :memfree        => 'MemFree',
-      :buffers        => 'Buffers',
-      :cached         => 'Cached',
-      :swapcached     => 'SwapCached',
-      :active         => 'Active',
-      :inactive       => 'Inactive',
-      :active_anon    => 'Active\(anon\)',
-      :inactive_anon  => 'Inactive\(anon\)',
-      :active_file    => 'Active\(file\)',
-      :inactive_file  => 'Inactive\(file\)',
-      :unevictable    => 'Unevictable',
-      :mlocked        => 'Mlocked',
-      :swaptotal      => 'SwapTotal',
-      :swapfree       => 'SwapFree',
-      :dirty          => 'Dirty',
-      :writeback      => 'Writeback',
-      :anonpages      => 'AnonPages',
-      :mapped         => 'Mapped',
-      :slab           => 'Slab',
-      :sreclaimable   => 'SReclaimable',
-      :sunreclaim     => 'SUnreclaim',
-      :pagetables     => 'PageTables',
-      :nfs_unstable   => 'NFS_Unstable',
-      :bounce         => 'Bounce',
-      :writebacktmp   => 'WritebackTmp',
-      :commitlimit    => 'CommitLimit',
-      :committed_as   => 'Committed_AS',
-      :vmalloctotal   => 'VmallocTotal',
-      :vmallocused    => 'VmallocUsed',
-      :vmallocchunk   => 'VmallocChunk',
-      :directmap4k    => 'DirectMap4k',
-      :directmap2m    => 'DirectMap2M'
+      memtotal: 'MemTotal',
+      memfree: 'MemFree',
+      buffers: 'Buffers',
+      cached: 'Cached',
+      swapcached: 'SwapCached',
+      active: 'Active',
+      inactive: 'Inactive',
+      active_anon: 'Active\(anon\)',
+      inactive_anon: 'Inactive\(anon\)',
+      active_file: 'Active\(file\)',
+      inactive_file: 'Inactive\(file\)',
+      unevictable: 'Unevictable',
+      mlocked: 'Mlocked',
+      swaptotal: 'SwapTotal',
+      swapfree: 'SwapFree',
+      dirty: 'Dirty',
+      writeback: 'Writeback',
+      anonpages: 'AnonPages',
+      mapped: 'Mapped',
+      slab: 'Slab',
+      sreclaimable: 'SReclaimable',
+      sunreclaim: 'SUnreclaim',
+      pagetables: 'PageTables',
+      nfs_unstable: 'NFS_Unstable',
+      bounce: 'Bounce',
+      writebacktmp: 'WritebackTmp',
+      commitlimit: 'CommitLimit',
+      committed_as: 'Committed_AS',
+      vmalloctotal: 'VmallocTotal',
+      vmallocused: 'VmallocUsed',
+      vmallocchunk: 'VmallocChunk',
+      directmap4k: 'DirectMap4k',
+      directmap2m: 'DirectMap2M',
     }
 
-
     def initialize(meminfo_file = '/proc/meminfo')
-      raise NoProcData, "This system doesn't have /proc/meminfo data." if not File.exists?(meminfo_file)
+      raise NoProcData, "This system doesn't have /proc/meminfo data." if !File.exist?(meminfo_file)
 
       File.open(meminfo_file, 'r') do |file|
         data = file.read
-        @@attributes.keys.each do |attribute|
+        @@attributes.each_key do |attribute|
           value, unit = regex_match(attribute, data)
           if unit != 'kB'
             raise NoProcData, 'Unsupported unit stored in meminfo.'
           end
-          instance_variable_set("@#{attribute.to_s}", value.to_i)
+          instance_variable_set("@#{attribute}", value.to_i)
         end
       end
     end
@@ -97,9 +96,7 @@ module ProcParser
     def regex_match(attribute, line)
       regex = Regexp.new("#{@@attributes[attribute]}:[[:space:]]*([[:digit:]]*) ([[:alpha:]]*)")
       m = regex.match(line)
-      if regex === line
-        return m[1], m[2]
-      end
+      return m[1], m[2] if line.match? regex
     end
   end
 end
