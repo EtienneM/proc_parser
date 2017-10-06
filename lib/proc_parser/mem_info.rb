@@ -96,7 +96,7 @@ module ProcParser
     def regex_match(attribute, line)
       regex = Regexp.new("#{@@attributes[attribute]}:[[:space:]]*([[:digit:]]*) ([[:alpha:]]*)")
       m = regex.match(line)
-      return m[1], m[2] if line.match? regex
+      return m[1], m[2] if line =~ regex
     end
   end
 end
