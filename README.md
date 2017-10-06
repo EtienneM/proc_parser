@@ -1,12 +1,5 @@
 # proc_parser
 
-Welcome to your new gem! In this directory, you'll find the files you need to
-be able to package up your Ruby library into a gem. Put your Ruby code in the
-file `lib/proc_parser`. To experiment with that code, run `bin/console` for an
-interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 proc_parser provides a Ruby wrapper for /proc data such as those contained in
 /proc/mem_info, /proc/stat and /proc/loadavg.
 
@@ -43,15 +36,22 @@ memfree = meminfo.memfree
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run
-`rake spec` to run the tests. You can also run `bin/console` for an interactive
-prompt that will allow you to experiment.
+After checking out the repositories, run `bin/setup` to install dependencies.
+Then, run `bundle exec rake spec` to run the tests. You can also run
+`bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To
 release a new version, update the version number in `version.rb`, and then run
 `bundle exec rake release`, which will create a git tag for the version, push
 git commits and tags, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
+
+### Without installing Ruby globally
+
+On my work station, I prefer to use a Docker image with Ruby installed instead
+of installing Ruby locally. Hence, any `bundle …` command can be prefixed with
+`docker-compose run proc-parser`. For instance, running the tests is done with
+the command `docker-compose run proc-parser bundle exec rake spec`.
 
 ## Acknowledgment
 
