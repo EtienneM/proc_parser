@@ -81,8 +81,8 @@ module ProcParser
 
     # Memory available in the system. It is not just the free memory.
     #
-    # The available memory is actually what the `free` command line tool calls `-/+ buffers/cache`. It
-    # uses information from /proc/meminfo: it sums the MemFree, the Buffers and the Cached.
+    # The available memory is actually what the `free` command line tool calls `-/+ buffers/cache`.
+    # It uses information from /proc/meminfo: it sums the MemFree, the Buffers and the Cached.
     #
     # cf. `free` source code: https://github.com/mmalecki/procps/blob/fe4c4a7314f32907b9f558ad0d8b8d0ff1cc76be/free.c#L97
     # cf. man 5 proc
