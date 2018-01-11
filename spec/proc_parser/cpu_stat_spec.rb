@@ -15,7 +15,6 @@ RSpec.describe ProcParser::CPUStat do
     context 'should parse correctly the data' do
       c = ProcParser::CPUStat.new('./spec/fixtures/cpu_stat')
       expected_values = {
-        nb_cpu: 4,
         user: 26_845_024,
         nice: 1_141_034,
         system: 3_698_335,
@@ -38,7 +37,7 @@ RSpec.describe ProcParser::CPUStat do
   describe '#percentage_usage' do
     it 'should compute the percentage usage' do
       c = ProcParser::CPUStat.new('./spec/fixtures/cpu_stat')
-      expect(c.percentage_usage).to eq 0.14803981118984352
+      expect(c.percentage_usage).to eq 0.5921592447593741
     end
   end
 end
