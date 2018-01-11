@@ -19,6 +19,8 @@ module ProcParser
       guest_nice: 10,
     }
 
+    attr_accessor :nb_cpu
+
     def initialize(stat_file = '/proc/stat')
       raise NoProcData, "This system doesn't have /proc/stat data." if !File.exist?(stat_file)
 
@@ -28,6 +30,13 @@ module ProcParser
 
         @@attributes.each do |attribute, index|
           instance_variable_set("@#{attribute}", firstline[index].to_i)
+        end
+
+        @nb_cpu = 0
+        file.each do |line|
+          splitted_line = line.strip.squeeze(' ').split(' ')
+          break if !splitted_line[0].start_with? 'cpu'
+          @nb_cpu += 1
         end
       end
     end

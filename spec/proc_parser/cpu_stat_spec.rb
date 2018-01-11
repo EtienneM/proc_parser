@@ -15,6 +15,7 @@ RSpec.describe ProcParser::CPUStat do
     context 'should parse correctly the data' do
       c = ProcParser::CPUStat.new('./spec/fixtures/cpu_stat')
       expected_values = {
+        nb_cpu: 4,
         user: 26_845_024,
         nice: 1_141_034,
         system: 3_698_335,
