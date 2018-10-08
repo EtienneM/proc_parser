@@ -4,8 +4,8 @@ proc_parser provides a Ruby wrapper for /proc data such as those contained in
 /proc/mem_info, /proc/stat and /proc/loadavg.
 
 Interested in support of more proc files? Contributions are welcome! You can
-either create an [issue](https://github.com/EtienneM/mem_info/issues) or
-propose a [pull request](https://github.com/EtienneM/mem_info/pulls).
+either create an [issue](https://github.com/EtienneM/proc_parser/issues) or
+propose a [pull request](https://github.com/EtienneM/proc_parser/pulls).
 
 Wondering the meaning of some fields? Read the manual with [`man 5
 proc`](https://linux.die.net/man/5/proc).
