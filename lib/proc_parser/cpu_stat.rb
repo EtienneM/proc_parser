@@ -42,28 +42,35 @@ module ProcParser
     end
 
     #
-    ## Get the current CPU usage in percentage. It's a global percentage normalized on the number of
-    # CPU.
+    # The next values (idletime, non_idletime and totaltime) are computed based on the following
+    # information:
     #
-    # The CPU usage is actually everything but the idle time of the CPU.
+    # - https://stackoverflow.com/a/23376195/1351436
+    # - `htop` source code: https://github.com/hishamhm/htop/blob/e0209da88faf3b390d71ff174065abd407abfdfd/ProcessList.c#L947
+    # - man 5 proc
     #
-    # cf. `htop` source code: https://github.com/hishamhm/htop/blob/e0209da88faf3b390d71ff174065abd407abfdfd/ProcessList.c#L947
-    # cf. man 5 proc
-    # cf. https://stackoverflow.com/a/23376195/1351436
+    # Computing the percentage usage is done with the following algorithm:
+    # totald = Total - PrevTotal
+    # idled = Idle - PrevIdle
+    # CPU_Percentage = (totald - idled)/totald
     #
-    def percentage_usage
+    # With the Prev* variables fetched earlier than the current values.
+    def idletime
+      return @idle + @iowait
+    end
+
+    def non_idletime
       # Guest time is already accounted in user time
       user = @user - @guest
       nice = @nice - @guest_nice
 
-      idlealltime = @idle + @iowait
       systemalltime = @system + @irq + @softirq
       virtalltime = @guest + @guest_nice
-      non_idlealltime = user + nice + systemalltime + @steal + virtalltime
+      return user + nice + systemalltime + @steal + virtalltime
+    end
 
-      total = idlealltime + non_idlealltime
-
-      return non_idlealltime / total.to_f
+    def totaltime
+      return idletime + non_idletime
     end
   end
 end

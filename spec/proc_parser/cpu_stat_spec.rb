@@ -35,10 +35,24 @@ RSpec.describe ProcParser::CPUStat do
     end
   end
 
-  describe '#percentage_usage' do
+  describe '#idletime' do
     it 'should compute the percentage usage' do
       c = ProcParser::CPUStat.new('./spec/fixtures/cpu_stat')
-      expect(c.percentage_usage).to eq 0.5921592447593741
+      expect(c.idletime).to eq 21_988_260
+    end
+  end
+
+  describe '#non_idletime' do
+    it 'should compute the percentage usage' do
+      c = ProcParser::CPUStat.new('./spec/fixtures/cpu_stat')
+      expect(c.non_idletime).to eq 31_925_577
+    end
+  end
+
+  describe '#totaltime' do
+    it 'should compute the percentage usage' do
+      c = ProcParser::CPUStat.new('./spec/fixtures/cpu_stat')
+      expect(c.totaltime).to eq 53_913_837
     end
   end
 end
